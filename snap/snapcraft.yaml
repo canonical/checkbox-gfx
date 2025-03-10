@@ -38,6 +38,12 @@ apps:
   test:
     command-chain: [bin/wrapper_local]
     command: bin/test
+  test-lvl-zero:
+    command-chain: [bin/wrapper_local]
+    command: bin/test-lvl-zero
+  test-lvl-zero-rt:
+    command-chain: [bin/wrapper_local]
+    command: bin/test-lvl-zero-rt
   remote-slave:
     command-chain: [bin/wrapper_local]
     command: bin/checkbox-cli-wrapper slave

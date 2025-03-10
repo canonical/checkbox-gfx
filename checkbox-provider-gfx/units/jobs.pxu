@@ -411,7 +411,7 @@ environ:
 estimated_duration: 1m
 command:
   echo "{{ command }}"
-  {{ command }}
+  (cd /usr/local/checkbox-gfx; {{ command }})
 
 unit: template
 template-resource: levelzeroraytracingtests
