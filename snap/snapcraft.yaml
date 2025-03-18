@@ -54,6 +54,8 @@ apps:
     command: bin/shell-wrapper
   install:
     command: bin/install
+  remove:
+    command: bin/remove
 
 passthrough:
   hooks:
