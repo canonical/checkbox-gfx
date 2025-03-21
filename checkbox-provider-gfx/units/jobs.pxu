@@ -393,6 +393,13 @@ command:
     echo 'command: embree_rthwif_test --default-rtas-builder --sw-instancing --procedurals-committed-hit'
     echo
 
+id: crucibletests
+plugin: resource
+command:
+    echo 'testgroup: stencil-triangles'
+    echo 'filter: func.depthstencil.stencil-triangles.clear-0x17.ref-0x17.compare-op-greater.*'
+    echo
+
 unit: template
 template-resource: levelzerobins
 template-filter: levelzerobins.binname != ''
@@ -437,3 +444,26 @@ command:
   LD_LIBRARY_PATH=$SYCL_BUNDLE_ROOT/lib/oclgpu:$LD_LIBRARY_PATH
   echo "{{ command }}"
   {{ command }}
+
+unit: template
+template-resource: crucibletests
+template-filter: crucibletests.testgroup != ''
+template-engine: jinja2
+template-unit: job 
+id: gfx_mesa_crucible_{{ testgroup }}
+category_id: mesa
+flags: simple
+user: root
+_summary: Run the {{ testgroup }} test from crucible tests
+requires:
+  executable.name == "/usr/local/checkbox-gfx/crucible/bin/crucible"
+environ: 
+  # necessary for local mode
+  XDG_SESSION_TYPE 
+  XDG_RUNTIME_DIR
+  NORMAL_USER
+estimated_duration: 1m
+command: 
+  echo "{{ command }}"
+  (cd /usr/local/checkbox-gfx/crucible; ./bin/crucible run '{{ filter }}')
+

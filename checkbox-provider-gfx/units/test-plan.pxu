@@ -4,12 +4,14 @@ _name: GFX test plan for hardware encode and decode
 include:
   gfx_level_zero.*
   gfx_level_zero_rt.*
+  gfx_mesa_crucible.*
 bootstrap_include:
     com.canonical.certification::executable
     com.canonical.certification::snap
     graphics_card
     levelzerobins
     levelzeroraytracingtests
+    crucibletests
 
 id: lvl-zero-plan
 unit: test plan
@@ -32,3 +34,14 @@ bootstrap_include:
     com.canonical.certification::snap
     graphics_card
     levelzeroraytracingtests
+
+id: mesa-test-plan
+unit: test plan
+_name: GFX test plan for verifying Mesa
+include:
+  gfx_mesa_crucible.*
+bootstrap_include:
+    com.canonical.certification::executable
+    com.canonical.certification::snap
+    graphics_card
+    crucibletests
