@@ -2,50 +2,66 @@
 
 INSTALL_DIR=/usr/local/checkbox-gfx
 
-# install level-zero testing
+# Get vendor
+if [[ $(lscpu | grep "GenuineIntel") ]]; then
+    VENDOR=Intel
+elif [[ $(lscpu | grep "AuthenticAMD") ]]; then
+    VENDOR=AMD
+elif [[ $(lscpu | grep "Qualcomm") ]]; then
+    VENDOR=Qualcomm
+fi
 
-sudo apt -y update
-sudo apt install -y build-essential cmake ocl-icd-libopencl1 libva2 libva-drm2 libze-dev libze-intel-gpu-dev libpng-dev libboost-all-dev libmfx-gen1 ninja-build clang
+sudo mkdir $INSTALL_DIR
 
-cd $INSTALL_DIR
-git clone https://github.com/oneapi-src/level-zero-tests
-cd level-zero-tests
-git checkout cf41a5a6d220a5ca951f7d92e2d62f51d38fbb1c
-wget https://people.canonical.com/~mckeesh/level-zero-tests-fix.diff
-git apply level-zero-tests-fix.diff
-mkdir build
-cd build
-cmake -D CMAKE_INSTALL_PREFIX=$INSTALL_DIR ..
-sudo cmake --build . --config Release --target install
+if [ "$VENDOR" = "Intel" ]; then
+    echo "Installing Level Zero tests"
+    # install level-zero testing
 
-# install level-zero-raytracing-support testing
-cd /tmp/
-mkdir sycl_linux && cd sycl_linux
-wget https://github.com/intel/llvm/releases/download/nightly-2024-06-10/sycl_linux.tar.gz
-tar xf sycl_linux.tar.gz
-cd ..
-sudo mv sycl_linux $INSTALL_DIR
+    sudo apt -y update
+    sudo apt install -y build-essential cmake ocl-icd-libopencl1 libva2 libva-drm2 libze-dev libze-intel-gpu-dev libpng-dev libboost-all-dev libmfx-gen1 ninja-build clang
 
-cd $INSTALL_DIR/sycl_linux
-# Set up the expected paths
-export SYCL_BUNDLE_ROOT=$(pwd)
-export PATH=$SYCL_BUNDLE_ROOT/bin:$PATH
-export CPATH=$SYCL_BUNDLE_ROOT/include:$CPATH
-export LIBRARY_PATH=$SYCL_BUNDLE_ROOT/lib:$LIBRARY_PATH
-export LD_LIBRARY_PATH=$SYCL_BUNDLE_ROOT/lib:$LD_LIBRARY_PATH
-export LD_LIBRARY_PATH=$SYCL_BUNDLE_ROOT/linux/lib/x64:$LD_LIBRARY_PATH
-export LD_LIBRARY_PATH=$SYCL_BUNDLE_ROOT/lib/oclgpu:$LD_LIBRARY_PATH
+    cd $INSTALL_DIR
+    git clone https://github.com/oneapi-src/level-zero-tests
+    cd level-zero-tests
+    git checkout 5477490d98ad737a79ce8017954d1c3b1301e88c
+    mkdir build
+    cd build
+    cmake -D CMAKE_INSTALL_PREFIX=$INSTALL_DIR ..
+    sudo cmake --build . --config Release --target install
 
-cd /tmp/
-git clone https://github.com/intel/level-zero-raytracing-support
-cd level-zero-raytracing-support
-mkdir build
-cd build/
-cmake -G Ninja -D CMAKE_CXX_COMPILER=clang++ -D CMAKE_C_COMPILER=clang -D CMAKE_BUILD_TYPE=Release -D ZE_RAYTRACING_SYCL_TESTS=DEFAULT_RTAS_BUILDER ..
-cmake --build . --target package && echo "Level zero raytracing build complete" || exit 1
-cd ../..
-sudo mv level-zero-raytracing-support $INSTALL_DIR
+    echo "Installing Level Zero Raytracing tests"
+    # install level-zero-raytracing-support testing
+    cd /tmp/
+    mkdir sycl_linux && cd sycl_linux
+    wget https://github.com/intel/llvm/releases/download/nightly-2024-06-10/sycl_linux.tar.gz
+    tar xf sycl_linux.tar.gz
+    cd ..
+    sudo mv sycl_linux $INSTALL_DIR
 
+    cd $INSTALL_DIR/sycl_linux
+    # Set up the expected paths
+    export SYCL_BUNDLE_ROOT=$(pwd)
+    export PATH=$SYCL_BUNDLE_ROOT/bin:$PATH
+    export CPATH=$SYCL_BUNDLE_ROOT/include:$CPATH
+    export LIBRARY_PATH=$SYCL_BUNDLE_ROOT/lib:$LIBRARY_PATH
+    export LD_LIBRARY_PATH=$SYCL_BUNDLE_ROOT/lib:$LD_LIBRARY_PATH
+    export LD_LIBRARY_PATH=$SYCL_BUNDLE_ROOT/linux/lib/x64:$LD_LIBRARY_PATH
+    export LD_LIBRARY_PATH=$SYCL_BUNDLE_ROOT/lib/oclgpu:$LD_LIBRARY_PATH
+
+    cd /tmp/
+    git clone https://github.com/intel/level-zero-raytracing-support
+    cd level-zero-raytracing-support
+    mkdir build
+    cd build/
+    cmake -G Ninja -D CMAKE_CXX_COMPILER=clang++ -D CMAKE_C_COMPILER=clang -D CMAKE_BUILD_TYPE=Release -D ZE_RAYTRACING_SYCL_TESTS=DEFAULT_RTAS_BUILDER ..
+    cmake --build . --target package && echo "Level zero raytracing build complete" || exit 1
+    cd ../..
+    sudo mv level-zero-raytracing-support $INSTALL_DIR
+else
+    echo "Not installing Level Zero testing because it is Intel-specific"
+fi
+
+echo "Installing Crucible tests"
 # install crucible
 sudo apt install -y python3-pip meson glslang-tools pkg-config cmake libvulkan-dev libgl1
 pip3 install opencv-python --break-system-packages
@@ -56,4 +72,4 @@ cd crucible
 meson bin
 ninja -C bin
 cd ..
-sudo mv crucible $INSTALL_DIR
+sudo mv crucible/ $INSTALL_DIR
