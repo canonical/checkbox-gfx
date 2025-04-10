@@ -190,9 +190,6 @@ command:
     echo 'binname: test_event'
     echo 'command: sudo /usr/local/checkbox-gfx/test_event'
     echo
-    echo 'binname: test_stress_commands_overloading'
-    echo 'command: sudo /usr/local/checkbox-gfx/test_stress_commands_overloading'
-    echo
     echo 'binname: test_template'
     echo 'command: sudo /usr/local/checkbox-gfx/test_template'
     echo
