@@ -211,9 +211,6 @@ command:
     echo 'binname: test_ipc'
     echo 'command: sudo /usr/local/checkbox-gfx/test_ipc'
     echo
-    echo 'binname: test_sysman_frequency'
-    echo 'command: sudo /usr/local/checkbox-gfx/test_sysman_frequency'
-    echo
     echo 'binname: test_memory'
     echo 'command: sudo /usr/local/checkbox-gfx/test_memory'
     echo
