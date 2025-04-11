@@ -223,9 +223,6 @@ command:
     echo 'binname: test_residency'
     echo 'command: sudo /usr/local/checkbox-gfx/test_residency'
     echo
-    echo 'binname: test_sysman_overclocking'
-    echo 'command: sudo /usr/local/checkbox-gfx/test_sysman_overclocking'
-    echo
     echo 'binname: test_init_sysman_after_core'
     echo 'command: sudo /usr/local/checkbox-gfx/test_init_sysman_after_core'
     echo
