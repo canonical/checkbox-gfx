@@ -247,9 +247,6 @@ command:
     echo 'binname: test_sysman_led'
     echo 'command: sudo /usr/local/checkbox-gfx/test_sysman_led'
     echo
-    echo 'binname: test_api_ltracing_dynamic'
-    echo 'command: sudo /usr/local/checkbox-gfx/test_api_ltracing_dynamic'
-    echo
     echo 'binname: test_multithread'
     echo 'command: sudo /usr/local/checkbox-gfx/test_multithread'
     echo
