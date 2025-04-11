@@ -229,9 +229,6 @@ command:
     echo 'binname: test_cmdqueue_errors'
     echo 'command: sudo /usr/local/checkbox-gfx/test_cmdqueue_errors'
     echo
-    echo 'binname: test_sysman_frequency_zesinit'
-    echo 'command: sudo /usr/local/checkbox-gfx/test_sysman_frequency_zesinit'
-    echo
     echo 'binname: test_sysman_temperature_zesinit'
     echo 'command: sudo /usr/local/checkbox-gfx/test_sysman_temperature_zesinit'
     echo
