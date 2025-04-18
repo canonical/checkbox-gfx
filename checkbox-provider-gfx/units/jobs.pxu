@@ -190,9 +190,6 @@ command:
     echo 'binname: test_event'
     echo 'command: sudo /usr/local/checkbox-gfx/test_event'
     echo
-    echo 'binname: test_stress_commands_overloading'
-    echo 'command: sudo /usr/local/checkbox-gfx/test_stress_commands_overloading'
-    echo
     echo 'binname: test_template'
     echo 'command: sudo /usr/local/checkbox-gfx/test_template'
     echo
@@ -214,9 +211,6 @@ command:
     echo 'binname: test_ipc'
     echo 'command: sudo /usr/local/checkbox-gfx/test_ipc'
     echo
-    echo 'binname: test_sysman_frequency'
-    echo 'command: sudo /usr/local/checkbox-gfx/test_sysman_frequency'
-    echo
     echo 'binname: test_memory'
     echo 'command: sudo /usr/local/checkbox-gfx/test_memory'
     echo
@@ -229,20 +223,11 @@ command:
     echo 'binname: test_residency'
     echo 'command: sudo /usr/local/checkbox-gfx/test_residency'
     echo
-    echo 'binname: test_sysman_scheduler'
-    echo 'command: sudo /usr/local/checkbox-gfx/test_sysman_scheduler'
-    echo
-    echo 'binname: test_sysman_overclocking'
-    echo 'command: sudo /usr/local/checkbox-gfx/test_sysman_overclocking'
-    echo
     echo 'binname: test_init_sysman_after_core'
     echo 'command: sudo /usr/local/checkbox-gfx/test_init_sysman_after_core'
     echo
     echo 'binname: test_cmdqueue_errors'
     echo 'command: sudo /usr/local/checkbox-gfx/test_cmdqueue_errors'
-    echo
-    echo 'binname: test_sysman_frequency_zesinit'
-    echo 'command: sudo /usr/local/checkbox-gfx/test_sysman_frequency_zesinit'
     echo
     echo 'binname: test_sysman_temperature_zesinit'
     echo 'command: sudo /usr/local/checkbox-gfx/test_sysman_temperature_zesinit'
@@ -255,9 +240,6 @@ command:
     echo
     echo 'binname: test_sysman_led'
     echo 'command: sudo /usr/local/checkbox-gfx/test_sysman_led'
-    echo
-    echo 'binname: test_api_ltracing_dynamic'
-    echo 'command: sudo /usr/local/checkbox-gfx/test_api_ltracing_dynamic'
     echo
     echo 'binname: test_multithread'
     echo 'command: sudo /usr/local/checkbox-gfx/test_multithread'
