@@ -37,18 +37,24 @@ systemctl status snap.checkbox-gfx.remote-slave.service
 # Install dependencies
 
 Some test need dependencies, so in order to run all tests, you might way to install those dependencies.
-A helper script is available to install them:
+A helper script is available to install each category of tests:
 
 ```shell
-checkbox-gfx.install
+checkbox-gfx.install-lvl-zero
+checkbox-gfx.install-lvl-zero-rt
+checkbox-gfx.install-mesa
+checkbox-gfx.install-opencl
 ```
 
 # Automated Run
 
-To run the full test plan locally:
+Each category of tests is run separately:
 
 ```shell
-checkbox-gfx.test
+checkbox-gfx.test-lvl-zero
+checkbox-gfx.test-lvl-zero-rt
+checkbox-gfx.test-mesa
+checkbox-gfx.test-opencl
 ```
 
 Due to some tests causing dropped SSH connections, running the tests remotely should be done like this:

@@ -53,6 +53,12 @@ apps:
     command: bin/install
   install-opencl:
     command: bin/install-opencl
+  install-lvl-zero:
+    command: bin/install-lvl-zero
+  install-lvl-zero-rt:
+    command: bin/install-lvl-zero-rt
+  install-mesa:
+    command: bin/install-mesa
   remove:
     command: bin/remove
 

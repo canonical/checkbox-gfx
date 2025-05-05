@@ -1,0 +1,58 @@
+#!/bin/bash
+
+set -e
+
+INSTALL_DIR=/usr/local/checkbox-gfx
+WORKING_DIR=$HOME/.checkbox-gfx-working-dir
+
+# Get vendor
+if [[ $(lscpu | grep "GenuineIntel") ]]; then
+    VENDOR=Intel
+elif [[ $(lscpu | grep "AuthenticAMD") ]]; then
+    VENDOR=AMD
+elif [[ $(lscpu | grep "Qualcomm") ]]; then
+    VENDOR=Qualcomm
+fi
+
+sudo mkdir $INSTALL_DIR
+sudo mkdir -p $WORKING_DIR
+sudo chown -R $USER $WORKING_DIR
+
+sudo apt update -y
+sudo apt install -y build-essential cmake ocl-icd-libopencl1 libva2 libva-drm2 libze-dev libze-intel-gpu-dev libpng-dev libboost-all-dev libmfx-gen1 ninja-build clang ocl-icd-opencl-dev clinfo python3-pip meson glslang-tools pkg-config cmake libvulkan-dev libgl1 mesa-common-dev libglfw3-dev libgles2-mesa-dev
+pip3 install opencv-python lxml --break-system-packages
+
+echo "Installing Crucible tests"
+# install crucible
+
+cd $WORKING_DIR
+git clone https://gitlab.freedesktop.org/mesa/crucible
+cd crucible
+meson bin
+ninja -C bin
+cd ..
+sudo mv $WORKING_DIR/crucible $INSTALL_DIR
+
+echo "Installing VK-GL-CTS for Vulkan"
+cd $WORKING_DIR
+git clone https://github.com/KhronosGroup/VK-GL-CTS
+cd VK-GL-CTS
+git checkout vulkan-cts-1.4.1.3
+python3 external/fetch_sources.py
+mkdir build && cd build
+cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_FLAGS=-m64 -DCMAKE_CXX_FLAGS=-m64
+# 64GB RAM wasn't enough for -j. Add nproc
+make -j`nproc`
+sudo mv $WORKING_DIR/VK-GL-CTS $INSTALL_DIR
+
+echo "Installing VK-GL-CTS for OpenGL"
+cd $WORKING_DIR
+git clone https://github.com/KhronosGroup/VK-GL-CTS
+cd VK-GL-CTS
+git checkout opengl-cts-4.6.6.0
+python3 external/fetch_sources.py
+mkdir build && cd build
+cmake .. -DDEQP_TARGET=default
+# 64GB RAM wasn't enough for -j. Add nproc
+make -j`nproc`
+sudo mv $WORKING_DIR/VK-GL-CTS $INSTALL_DIR/GL-CTS
