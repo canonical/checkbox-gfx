@@ -3,19 +3,28 @@ name: "Build OpenGL/Vulkan CTS"
 on:
   workflow_dispatch:
     inputs:
-      arch:
-        description: 'Runner to run the workflow'
+      version:
+        description: 'Ubuntu version of the runner'
         required: true
-        default: 'ubuntu-24.04'
+        default: 'noble'
         type: choice
         options:
-          - ubuntu-24.04
-          - ubuntu-24.04-arm
+          - jammy
+          - noble
+
+      arch:
+        description: 'Architecture of the runner'
+        required: true
+        default: 'amd64'
+        type: choice
+        options:
+          - amd64
+          - ARM64
 
 jobs:
   run-install-mesa:
     name: "Run install-mesa to generate CTS binaries"
-    runs-on: [ "${{ inputs.arch }}" ]
+    runs-on: [ self-hosted, linux, "${{ inputs.arch }}", "${{ inputs.version}}" ]
 
     steps:
       - name: checkout the main repo
