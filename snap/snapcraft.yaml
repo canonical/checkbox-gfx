@@ -55,8 +55,12 @@ apps:
     command: bin/install-lvl-zero
   install-lvl-zero-rt:
     command: bin/install-lvl-zero-rt
-  install-mesa:
-    command: bin/install-mesa
+  install-crucible:
+    command: bin/install-crucible
+  install-opengl:
+    command: bin/install-opengl
+  install-vulkan:
+    command: bin/install-vulkan
   remove:
     command: bin/remove
 
