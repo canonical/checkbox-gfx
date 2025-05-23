@@ -1,4 +1,4 @@
-name: "Build OpenGL/Vulkan CTS"
+name: "Build OpenCL CTS"
 
 on:
   workflow_dispatch:
@@ -22,18 +22,18 @@ on:
           - ARM64
 
 jobs:
-  run-install-mesa:
-    name: "Run install-mesa to generate CTS binaries"
+  run-install-opencl:
+    name: "Run install-opencl to generate CTS binaries"
     runs-on: [ self-hosted, linux, "${{ inputs.arch }}", "${{ inputs.version}}" ]
 
     steps:
       - name: checkout the main repo
         uses: actions/checkout@v4
 
-      - name: Run install-mesa
+      - name: Run install-opencl
         shell: bash
         run: |
-          bin/install-mesa
+          bin/install-opencl
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
