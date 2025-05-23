@@ -35,9 +35,15 @@ apps:
   test-lvl-zero-rt:
     command-chain: [bin/wrapper_local]
     command: bin/test-lvl-zero-rt
-  test-mesa:
+  test-vulkan:
     command-chain: [bin/wrapper_local]
-    command: bin/test-mesa
+    command: bin/test-vulkan
+  test-crucible:
+    command-chain: [bin/wrapper_local]
+    command: bin/test-crucible
+  test-opengl:
+    command-chain: [bin/wrapper_local]
+    command: bin/test-opengl
   test-opencl:
     command-chain: [bin/wrapper_local]
     command: bin/test-opencl
