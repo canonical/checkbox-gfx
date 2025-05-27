@@ -20,6 +20,16 @@ on:
         options:
           - amd64
           - ARM64
+    push:
+      branches:
+      - test_gh_runner
+    paths:
+      - bin/install-crucible
+    pull_request:
+      branches:
+      - main
+      paths:
+      - bin/install-crucible
 
 jobs:
   run-install-crucible:

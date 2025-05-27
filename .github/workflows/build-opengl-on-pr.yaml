@@ -1,0 +1,30 @@
+name: "Build OpenGL - amd64"
+on:
+  push:
+    branches:
+      - test_gh_runner
+  pull_request:
+    branches:
+      - main
+    paths:
+      - bin/install-opengl
+
+jobs:
+  run-install-opengl-amd64:
+    name: "Run install-opengl to opengl testing binaries on amd64"
+    runs-on: [ self-hosted, linux, "amd64", "noble" ]
+    steps:
+      - name: checkout the main repo
+        uses: actions/checkout@v4
+
+      - name: Run install-opengl
+        shell: bash
+        run: |
+          bin/install-opengl
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: output
+          path: |
+            /usr/local/checkbox-gfx/*

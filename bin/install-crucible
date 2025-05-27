@@ -5,7 +5,7 @@ set -e
 source $(dirname "$0")/setup-env.sh
 
 sudo apt update -y
-sudo apt install -y build-essential cmake python3-pip meson glslang-tools pkg-config cmake
+sudo apt install -y build-essential cmake python3-pip meson glslang-tools pkg-config cmake libpng-dev libxml2-dev libvulkan-dev mesa-common-dev
 pip3 install opencv-python --break-system-packages
 
 echo "Installing Crucible tests"
