@@ -4,10 +4,6 @@ set -e
 
 source $(dirname "$0")/setup-env.sh
 
-sudo mkdir $INSTALL_DIR
-sudo mkdir -p $WORKING_DIR
-sudo chown -R $USER $WORKING_DIR
-
 sudo apt update -y
 sudo apt install -y build-essential cmake ocl-icd-libopencl1 libva2 libva-drm2 libze-dev libze-intel-gpu-dev libpng-dev libboost-all-dev libmfx-gen1 ninja-build clang ocl-icd-opencl-dev clinfo python3-pip meson glslang-tools pkg-config cmake libvulkan-dev libgl1 mesa-common-dev libglfw3-dev libgles2-mesa-dev
 pip3 install opencv-python lxml --break-system-packages
