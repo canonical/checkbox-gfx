@@ -20,6 +20,11 @@ on:
         options:
           - amd64
           - ARM64
+    pull_request:
+      branches:
+      - main
+      paths:
+      - bin/install-crucible
 
 jobs:
   run-install-crucible:
