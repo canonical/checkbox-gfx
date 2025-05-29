@@ -11,7 +11,7 @@ sudo apt install -y build-essential cmake ocl-icd-libopencl1 libpng-dev libboost
 cd $WORKING_DIR
 git clone https://github.com/KhronosGroup/OpenCL-CTS
 cd OpenCL-CTS
-git checkout v2024-05-29-01
+git checkout v2024-02-27-00
 mkdir build
 cd ..
 cmake -S OpenCL-CTS -B OpenCL-CTS/build  -DCL_INCLUDE_DIR=/usr/include/CL -DCL_LIB_DIR=/usr/lib/x86_64-linux-gnu/  -DOPENCL_LIBRARIES=OpenCL
