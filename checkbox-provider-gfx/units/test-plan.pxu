@@ -78,3 +78,13 @@ bootstrap_include:
     com.canonical.certification::snap
     graphics_card
     openclctsbins
+
+id: intel-test-plan
+unit: test plan
+_name: A catch-all test plan for Intel-specific checks
+include:
+    intel.*
+bootstrap_include:
+    com.canonical.certification::executable
+    com.canonical.certification::snap
+    graphics_card

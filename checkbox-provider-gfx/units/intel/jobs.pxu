@@ -1,0 +1,19 @@
+plugin: resource
+id: intel_guc_active
+category_id: intel
+user: root
+_summary: Checks if GuC is active
+environ:
+  # necessary for local mode
+  XDG_SESSION_TYPE
+  XDG_RUNTIME_DIR
+estimated_duration: 1
+command:
+  GUC_RUNNING=$(sudo cat $(sudo find /sys/kernel/ -name guc_info) | grep "status: RUNNING")
+  if [ -z "$GUC_RUNNING" ]; then
+    echo "FAIL: GuC is not running"
+    exit 1
+  fi
+  echo "PASS: GuC is running"
+  exit 0
+

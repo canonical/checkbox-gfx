@@ -47,6 +47,9 @@ apps:
   test-opencl:
     command-chain: [bin/wrapper_local]
     command: bin/test-opencl
+  test-intel:
+    command-chain: [bin/wrapper_local]
+    command: bin/test-intel
   remote-slave:
     command-chain: [bin/wrapper_local]
     command: bin/checkbox-cli-wrapper slave
