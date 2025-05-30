@@ -35,12 +35,21 @@ apps:
   test-lvl-zero-rt:
     command-chain: [bin/wrapper_local]
     command: bin/test-lvl-zero-rt
-  test-mesa:
+  test-vulkan:
     command-chain: [bin/wrapper_local]
-    command: bin/test-mesa
+    command: bin/test-vulkan
+  test-crucible:
+    command-chain: [bin/wrapper_local]
+    command: bin/test-crucible
+  test-opengl:
+    command-chain: [bin/wrapper_local]
+    command: bin/test-opengl
   test-opencl:
     command-chain: [bin/wrapper_local]
     command: bin/test-opencl
+  test-intel:
+    command-chain: [bin/wrapper_local]
+    command: bin/test-intel
   remote-slave:
     command-chain: [bin/wrapper_local]
     command: bin/checkbox-cli-wrapper slave
@@ -55,8 +64,12 @@ apps:
     command: bin/install-lvl-zero
   install-lvl-zero-rt:
     command: bin/install-lvl-zero-rt
-  install-mesa:
-    command: bin/install-mesa
+  install-crucible:
+    command: bin/install-crucible
+  install-opengl:
+    command: bin/install-opengl
+  install-vulkan:
+    command: bin/install-vulkan
   remove:
     command: bin/remove
 
@@ -76,6 +89,11 @@ parts:
     stage-packages:
       - python3-tinydb
       - python3-filelock
+    override-build: |
+      for path in $(find "/snap/checkbox24/current/providers/" -mindepth 1 -maxdepth 1 -type d); do export PROVIDERPATH=$path${PROVIDERPATH:+:$PROVIDERPATH}; done
+      checkbox-provider-tools validate
+      checkbox-provider-tools build
+      checkbox-provider-tools install --layout=relocatable --prefix=/providers/checkbox-provider-gfx --root="$SNAPCRAFT_PART_INSTALL"
   bin:
     plugin: dump
     source: bin/

@@ -35,20 +35,38 @@ bootstrap_include:
     graphics_card
     levelzeroraytracingtests
 
-id: mesa-test-plan
+id: vulkan-test-plan
 unit: test plan
-_name: GFX test plan for verifying Mesa
+_name: GFX test plan for verifying Vulkan
 include:
-  gfx_mesa_crucible.*
   gfx_mesa_vk.*
+bootstrap_include:
+    com.canonical.certification::executable
+    com.canonical.certification::snap
+    graphics_card
+    vkconformancetests
+
+id: opengl-test-plan
+unit: test plan
+_name: GFX test plan for verifying OpenGL
+include:
   gfx_mesa_gl.*
 bootstrap_include:
     com.canonical.certification::executable
     com.canonical.certification::snap
     graphics_card
-    crucibletests
-    vkconformancetests
     glconformancetests
+
+id: crucible-test-plan
+unit: test plan
+_name: GFX test plan for verifying Mesa
+include:
+  gfx_mesa_crucible.*
+bootstrap_include:
+    com.canonical.certification::executable
+    com.canonical.certification::snap
+    graphics_card
+    crucibletests
 
 id: opencl-test-plan
 unit: test plan
@@ -60,3 +78,13 @@ bootstrap_include:
     com.canonical.certification::snap
     graphics_card
     openclctsbins
+
+id: intel-test-plan
+unit: test plan
+_name: A catch-all test plan for Intel-specific checks
+include:
+    intel.*
+bootstrap_include:
+    com.canonical.certification::executable
+    com.canonical.certification::snap
+    graphics_card

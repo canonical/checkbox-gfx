@@ -466,7 +466,7 @@ command:
     echo 'filter: func.calibrated-timestamps.*'
     echo
     echo 'testgroup: sync'
-    echo 'filter: func.sync.*
+    echo 'filter: func.sync.*'
     echo
 
 id: vkconformancetests

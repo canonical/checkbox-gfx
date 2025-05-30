@@ -41,7 +41,9 @@ Most tests need dependencies, and a helper script is available to install each c
 ```shell
 checkbox-gfx.install-lvl-zero
 checkbox-gfx.install-lvl-zero-rt
-checkbox-gfx.install-mesa
+checkbox-gfx.install-crucible
+checkbox-gfx.install-vulkan
+checkbox-gfx.install-opengl
 checkbox-gfx.install-opencl
 ```
 
