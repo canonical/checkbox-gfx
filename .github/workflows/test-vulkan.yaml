@@ -1,0 +1,70 @@
+name: "Test Vulkan - amd64"
+on:
+  push:
+    branches:
+      - test_gh_runner
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'bin/test-vulkan'
+      - 'checkbox/checkbox-provider-gfx/**'
+      - 'checkbox/snap/**'
+      - '.github/testflinger/**'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  SNAP_ARTIFACT_NAME: checkbox-gfx-snap
+  SNAP_FILE: checkbox-gfx_1.0_amd64.snap
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: snapcore/action-build@v1
+        name: Build checkbox-gfx snap
+        id: build
+        with:
+          snapcraft-channel: latest/stable
+      - name: Upload snap artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.SNAP_ARTIFACT_NAME }}
+          path: |
+            ./checkbox-gfx_1.0_amd64.snap
+  testflinger-validation:
+    name: Testflinger Validation
+    needs: build
+    runs-on: [self-hosted, self-hosted-linux-amd64-noble-medium]
+    strategy:
+      matrix:
+        device:
+          # Dell XPS 13 9340, Meteor Lake, 24.04
+          - { queue: dell-xps-13-9340-c34207, image: https://tel-image-cache.canonical.com/oem-share/somerville/releases/noble/oem-24.04a/20240729-53/somerville-noble-oem-24.04a-20240729-53.iso }
+          # Dell Pro Max 14, Arrow Lake, 24.04
+          - { queue: dell-pro-max-14-mc14250-0cf0-c36739, image: https://tel-image-cache.canonical.com/oem-share/somerville/releases/noble/oem-24.04a/20240729-53/somerville-noble-oem-24.04a-20240729-53.iso }
+      fail-fast: false
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: ${{ env.SNAP_ARTIFACT_NAME }}
+      - name: Build job file from template with oemscript provisioning
+        run: |
+          sed -e "s|REPLACE_QUEUE|${{ matrix.device.queue }}|" \
+          -e "s|REPLACE_IMAGE_URL|${{ matrix.device.image }}|" \
+          -e "s|REPLACE_ATTACHMENT|${{ env.SNAP_FILE }}|" \
+          ${GITHUB_WORKSPACE}/.github/testflinger/job-def.yaml > \
+          ${GITHUB_WORKSPACE}/job.yaml
+      - name: Submit testflinger job
+        uses: canonical/testflinger/.github/actions/submit@main
+        with:
+          poll: true
+          job-path: ${{ github.workspace }}/job.yaml
