@@ -1,6 +1,6 @@
 plugin: resource
 id: intel_guc_active
-category_id: intel
+category_id: intel-gfx
 user: root
 _summary: Checks if GuC is active
 environ:

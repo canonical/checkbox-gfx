@@ -1,3 +1,3 @@
 unit: category
-id: intel
+id: intel-gfx
 _name: A catch-all category for smaller Intel tests
