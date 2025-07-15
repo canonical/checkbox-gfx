@@ -1153,7 +1153,7 @@ environ:
   XDG_RUNTIME_DIR
 estimated_duration: 1m
 command:
-  cd /usr/local/checkbox-gfx/VK-GL-CTS/build/external/openglcts/modules; ./glcts --deqp-surface-type=fbo --deqp-case={{ testfilter }}
+  cd /usr/local/checkbox-gfx/GL-CTS/build/external/openglcts/modules; ./glcts --deqp-surface-type=fbo --deqp-case={{ testfilter }}
 
 plugin: resource
 id: gfx_cl_gpu_avail

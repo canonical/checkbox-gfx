@@ -54,7 +54,6 @@ Each category of tests is run separately:
 ```shell
 checkbox-gfx.test-lvl-zero
 checkbox-gfx.test-lvl-zero-rt
-checkbox-gfx.test-mesa
 checkbox-gfx.test-opencl
 ```
 
