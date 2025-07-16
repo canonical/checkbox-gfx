@@ -26,9 +26,6 @@ apps:
   configure:
     command-chain: [bin/wrapper_local]
     command: bin/configure
-  test:
-    command-chain: [bin/wrapper_local]
-    command: bin/test
   test-lvl-zero:
     command-chain: [bin/wrapper_local]
     command: bin/test-lvl-zero
