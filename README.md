@@ -39,12 +39,12 @@ systemctl status snap.checkbox-gfx.remote-slave.service
 Most tests need dependencies, and a helper script is available to install each category of tests:
 
 ```shell
+checkbox-gfx.install-crucible
 checkbox-gfx.install-lvl-zero
 checkbox-gfx.install-lvl-zero-rt
-checkbox-gfx.install-crucible
-checkbox-gfx.install-vulkan
 checkbox-gfx.install-opengl
 checkbox-gfx.install-opencl
+checkbox-gfx.install-vulkan
 ```
 
 # Automated Run
@@ -52,9 +52,12 @@ checkbox-gfx.install-opencl
 Each category of tests is run separately:
 
 ```shell
+checkbox-gfx.test-crucible
 checkbox-gfx.test-lvl-zero
 checkbox-gfx.test-lvl-zero-rt
 checkbox-gfx.test-opencl
+checkbox-gfx.test-opengl
+checkbox-gfx.test-vulkan
 ```
 
 Due to some tests causing dropped SSH connections, running the tests remotely should be done like this:
