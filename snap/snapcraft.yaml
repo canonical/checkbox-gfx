@@ -44,6 +44,9 @@ apps:
   test-opencl:
     command-chain: [bin/wrapper_local]
     command: bin/test-opencl
+  test-opencl-short:
+    command-chain: [bin/wrapper_local]
+    command: bin/test-opencl-short    
   test-intel:
     command-chain: [bin/wrapper_local]
     command: bin/test-intel
