@@ -9,7 +9,3 @@ _name: Category for Intel level zero raytracing tests
 unit: category
 id: mesa
 _name: Category for Mesa tests
-
-unit: category
-id: opencl
-_name: Category for OpenCL tests

@@ -64,6 +64,18 @@ bootstrap_include:
     graphics_card
     openclctsbins
 
+id: opencl-sru-test-plan
+unit: test plan
+_name: GFX test plan for verifying OpenCL
+include:
+    gfx_cl_gpu_avail
+    gfx_cl_sru_.*
+bootstrap_include:
+    com.canonical.certification::executable
+    com.canonical.certification::snap
+    graphics_card
+    openclctsbinssru
+
 id: intel-test-plan
 unit: test plan
 _name: A catch-all test plan for Intel-specific checks
