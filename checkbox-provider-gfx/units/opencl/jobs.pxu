@@ -1,0 +1,49 @@
+id: openclctsbinssru
+plugin: resource
+command:
+    echo 'binname: basic'
+    echo 'command: /usr/local/checkbox-gfx/OpenCL-CTS/build/test_conformance/basic/test_basic'
+    echo
+    echo 'binname: api'
+    echo 'command: /usr/local/checkbox-gfx/OpenCL-CTS/build/test_conformance/api/test_api'
+    echo
+    echo 'binname: compiler'
+    echo 'command: /usr/local/checkbox-gfx/OpenCL-CTS/build/test_conformance/compiler/test_compiler'
+    echo
+    echo 'binname: commonfns'
+    echo 'command: /usr/local/checkbox-gfx/OpenCL-CTS/build/test_conformance/commonfns/test_commonfns'
+    echo
+    echo 'binname: relationals'
+    echo 'command: /usr/local/checkbox-gfx/OpenCL-CTS/build/test_conformance/relationals/test_relationals'
+    echo
+    echo 'binname: atomics'
+    echo 'command: /usr/local/checkbox-gfx/OpenCL-CTS/build/test_conformance/atomics/test_atomics'
+    echo
+    echo 'binname: svm'
+    echo 'command: /usr/local/checkbox-gfx/OpenCL-CTS/build/test_conformance/SVM/test_svm'
+    echo
+    echo 'binname: thread_dimensions'
+    echo 'command: /usr/local/checkbox-gfx/OpenCL-CTS/build/test_conformance/thread_dimensions/test_thread_dimensions quick*'
+    echo
+    echo 'binname: integer_ops'
+    echo 'command: /usr/local/checkbox-gfx/OpenCL-CTS/build/test_conformance/integer_ops/test_integer_ops quick*'
+
+unit: template
+template-resource: openclctsbinssru
+template-filter: openclctsbinssru.binname != ''
+template-engine: jinja2
+template-unit: job
+id: gfx_cl_sru_{{ binname }}
+depends: gfx_cl_gpu_avail
+category_id: opencl
+flags: simple
+user: root
+_summary: Run the {{ binname }} tests from OpenCL-CTS
+environ:
+  # necessary for local mode
+  XDG_SESSION_TYPE
+  XDG_RUNTIME_DIR
+estimated_duration: 5m
+command:
+  {{ command }}
+
