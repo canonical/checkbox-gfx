@@ -25,7 +25,8 @@ command:
     echo 'binname: thread_dimensions'
     echo 'command: /usr/local/checkbox-gfx/OpenCL-CTS/build/test_conformance/thread_dimensions/test_thread_dimensions quick*'
     echo
-
+    echo 'binname: integer_ops'
+    echo 'command: /usr/local/checkbox-gfx/OpenCL-CTS/build/test_conformance/integer_ops/test_integer_ops quick*'
 
 unit: template
 template-resource: openclctsbinssru
