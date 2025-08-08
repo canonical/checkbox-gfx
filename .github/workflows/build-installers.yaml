@@ -1,4 +1,4 @@
-name: "Build Vulkan CTS"
+name: "Build Installers"
 
 on:
   workflow_dispatch:
@@ -24,21 +24,28 @@ on:
   pull_request:
     branches:
       - main
-    paths:
-      - bin/install-*
 
   push:
     branches:
       - test_gh_runner
-    paths:
-      - bin/install-*
 
 jobs:
+  detect-changes:
+    runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.set.outputs.changed }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: set
+        run: |
+          files=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})
+          echo "changed=$files" >> $GITHUB_OUTPUT
+
   manual-build:
     if: github.event_name == 'workflow_dispatch'
     strategy:
       matrix:
-        test_name: [vulkan, crucible, opengl, opencl]
+        test_name: [vulkan, opencl, crucible, opengl]
     name: "Manual Build - ${{ matrix.test_name }}"
     runs-on: [self-hosted, linux, "${{ inputs.arch }}", "${{ inputs.version }}"]
 
@@ -57,12 +64,17 @@ jobs:
           ${{ inputs.arch }}-${{ inputs.version }}"
           path: /usr/local/checkbox-gfx/*
 
-  pr-push-build:
-    if: github.event_name == 'pull_request' || github.event_name == 'push'
+  pr-build:
+    needs: detect-changes
+    if: >
+      (github.event_name == 'pull_request' ||
+      github.event_name == 'push') &&
+      contains(needs.detect-changes.outputs.changed,
+        format('bin/install-{0}', matrix.test_name))
     strategy:
       matrix:
         arch: [amd64, arm64]
-        test_name: [vulkan, crucible, opengl, opencl]
+        test_name: [vulkan, opencl, crucible, opengl]
     name: "Installer testing"
     runs-on: [self-hosted, linux, "${{ matrix.arch }}", noble]
 
