@@ -1,4 +1,4 @@
-name: "Build Vulkan CTS"
+name: "Build Installers"
 
 on:
   workflow_dispatch:
@@ -22,23 +22,34 @@ on:
           - arm64
 
   pull_request:
+    types: [opened, synchronize, reopened]
     branches:
       - main
-    paths:
-      - bin/install-*
-
-  push:
-    branches:
-      - test_gh_runner
-    paths:
-      - bin/install-*
 
 jobs:
+  # Job to detect which files have changed
+  changes:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    outputs:
+      vulkan: ${{ steps.changes.outputs.vulkan }}
+      opencl: ${{ steps.changes.outputs.opencl }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dorny/paths-filter@v3
+        id: changes
+        with:
+          filters: |
+            vulkan:
+              - 'bin/install-vulkan'
+            opencl:
+              - 'bin/install-opencl'
+              
   manual-build:
     if: github.event_name == 'workflow_dispatch'
     strategy:
       matrix:
-        test_name: [vulkan, crucible, opengl, opencl]
+        test_name: [vulkan, opencl]
     name: "Manual Build - ${{ matrix.test_name }}"
     runs-on: [self-hosted, linux, "${{ inputs.arch }}", "${{ inputs.version }}"]
 
@@ -57,13 +68,42 @@ jobs:
           ${{ inputs.arch }}-${{ inputs.version }}"
           path: /usr/local/checkbox-gfx/*
 
-  pr-push-build:
-    if: github.event_name == 'pull_request' || github.event_name == 'push'
+  pr-build-vulkan:
+    needs: changes
+    # needs.changes only runs if the event is a PR
+    if: needs.changes.outputs.vulkan == 'true'
     strategy:
       matrix:
         arch: [amd64, arm64]
-        test_name: [vulkan, crucible, opengl, opencl]
-    name: "Installer testing"
+        test_name: [vulkan]
+    name: "Installer testing - Vulkan CTS"
+    runs-on: [self-hosted, linux, "${{ matrix.arch }}", noble]
+
+    steps:
+      - name: "Installers - ${{ matrix.test_name }} - ${{ matrix.arch }}"
+        run: echo "Running ${{ matrix.test_name }} ${{ matrix.arch }} install"
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run install-${{ matrix.test_name }}
+        shell: bash
+        run: bin/install-${{ matrix.test_name }}
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: output-${{ matrix.test_name }}-${{ matrix.arch }}
+          path: /usr/local/checkbox-gfx/*
+
+  pr-build-opencl:
+    # needs.changes only runs if the event is a PR
+    if: needs.changes.outputs.opencl == 'true'
+    strategy:
+      matrix:
+        arch: [amd64, arm64]
+        test_name: [opencl]
+    name: "Installer testing - OpenCL CTS"
     runs-on: [self-hosted, linux, "${{ matrix.arch }}", noble]
 
     steps:
