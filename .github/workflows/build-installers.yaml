@@ -44,7 +44,7 @@ jobs:
               - 'bin/install-vulkan'
             opencl:
               - 'bin/install-opencl'
-              
+
   manual-build:
     if: github.event_name == 'workflow_dispatch'
     strategy:
@@ -97,6 +97,7 @@ jobs:
           path: /usr/local/checkbox-gfx/*
 
   pr-build-opencl:
+    needs: changes
     # needs.changes only runs if the event is a PR
     if: needs.changes.outputs.opencl == 'true'
     strategy:
