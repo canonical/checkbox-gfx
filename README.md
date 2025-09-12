@@ -64,8 +64,8 @@ Note: Crucible, Level-Zero, and Level-Zero Raytracing tests are already fast, so
 
 The following quick test suites are available:
 ```shell
-checkbox-gfx.test-opencl
-checkbox-gfx.test-opengl
+checkbox-gfx.test-opencl-short
+checkbox-gfx.test-opengl-short
 ```
 Clearing Interrupted Sessions
 
