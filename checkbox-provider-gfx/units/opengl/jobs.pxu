@@ -1,0 +1,170 @@
+id: glconformancetestssru
+plugin: resource
+command:
+    echo 'testgroup: info'
+    echo 'openglvariant: GLES3.2'
+    echo 'testfilter: KHR-GLES32.info.*'
+    echo
+    echo 'testgroup: shaders'
+    echo 'openglvariant: GLES3.2'
+    echo 'testfilter: KHR-GLES32.shaders.*'
+    echo
+    echo 'testgroup: geometry_shader'
+    echo 'openglvariant: GLES3.2'
+    echo 'testfilter: KHR-GLES32.core.geometry_shader.*'
+    echo
+    echo 'testgroup: gpu_shader5'
+    echo 'openglvariant: GLES3.2'
+    echo 'testfilter: KHR-GLES32.core.gpu_shader5.*'
+    echo
+    echo 'testgroup: tessellation_shader'
+    echo 'openglvariant: GLES3.2'
+    echo 'testfilter: KHR-GLES32.core.tessellation_shader.*'
+    echo
+    echo 'testgroup: texture_cube_map_array'
+    echo 'openglvariant: GLES3.2'
+    echo 'testfilter: KHR-GLES32.core.texture_cube_map_array.*'
+    echo
+    echo 'testgroup: texture_border_clamp'
+    echo 'openglvariant: GLES3.2'
+    echo 'testfilter: KHR-GLES32.core.texture_border_clamp.*'
+    echo
+    echo 'testgroup: texture_buffer'
+    echo 'openglvariant: GLES3.2'
+    echo 'testfilter: KHR-GLES32.core.texture_buffer.*'
+    echo
+    echo 'testgroup: draw_buffers_indexed'
+    echo 'openglvariant: GLES3.2'
+    echo 'testfilter: KHR-GLES32.core.draw_buffers_indexed.*'
+    echo
+    echo 'testgroup: constant_expressions'
+    echo 'openglvariant: GLES3.2'
+    echo 'testfilter: KHR-GLES32.core.constant_expressions.*'
+    echo
+    echo 'testgroup: shader_macros'
+    echo 'openglvariant: GLES3.2'
+    echo 'testfilter: KHR-GLES32.core.shader_macros.*'
+    echo
+    echo 'testgroup: separable_programs_tf'
+    echo 'openglvariant: GLES3.2'
+    echo 'testfilter: KHR-GLES32.core.separable_programs_tf.*'
+    echo
+    echo 'testgroup: copy_image'
+    echo 'openglvariant: GLES3.2'
+    echo 'testfilter: KHR-GLES32.core.copy_image.*'
+    echo
+    echo 'testgroup: texture2d'
+    echo 'openglvariant: GLES3.2'
+    echo 'testfilter: KHR-GLES32.core.internalformat.texture2d.*'
+    echo
+    echo 'testgroup: copy_tex_image'
+    echo 'openglvariant: GLES3.2'
+    echo 'testfilter: KHR-GLES32.core.internalformat.copy_tex_image.*'
+    echo
+    echo 'testgroup: renderbuffer'
+    echo 'openglvariant: GLES3.2'
+    echo 'testfilter: KHR-GLES32.core.internalformat.renderbuffer.rgb5_a1'
+    echo
+    echo 'testgroup: renderbuffer_depth_component32f'
+    echo 'openglvariant: GLES3.2'
+    echo 'testfilter: KHR-GLES32.core.internalformat.renderbuffer.depth_component32f'
+    echo
+    echo 'testgroup: renderbuffer_depth32f_stencil8'
+    echo 'openglvariant: GLES3.2'
+    echo 'testfilter: KHR-GLES32.core.internalformat.renderbuffer.depth32f_stencil8'
+    echo
+    echo 'testgroup: sampler2darrayshadow_fragment'
+    echo 'openglvariant: GLES3.2'
+    echo 'testfilter: KHR-GLES32.core.ext_texture_shadow_lod.texture.sampler2darrayshadow_fragment'
+    echo
+    echo 'testgroup: sampler2darrayshadow_bias_fragment'
+    echo 'openglvariant: GLES3.2'
+    echo 'testfilter: KHR-GLES32.core.ext_texture_shadow_lod.texture.sampler2darrayshadow_bias_fragment'
+    echo
+    echo 'testgroup: samplercubearrayshadow_vertex'
+    echo 'openglvariant: GLES3.2'
+    echo 'testfilter: KHR-GLES32.core.ext_texture_shadow_lod.texture.samplercubearrayshadow_vertex'
+    echo
+    echo 'testgroup: samplercubearrayshadow_fragment'
+    echo 'openglvariant: GLES3.2'
+    echo 'testfilter: KHR-GLES32.core.ext_texture_shadow_lod.texture.samplercubearrayshadow_fragment'
+    echo
+    echo 'testgroup: samplercubearrayshadow_bias_fragment'
+    echo 'openglvariant: GLES3.2'
+    echo 'testfilter: KHR-GLES32.core.ext_texture_shadow_lod.texture.samplercubearrayshadow_bias_fragment'
+    echo
+    echo 'testgroup: textureoffset_sampler2darrayshadow_vertex'
+    echo 'openglvariant: GLES3.2'
+    echo 'testfilter: KHR-GLES32.core.ext_texture_shadow_lod.textureoffset.sampler2darrayshadow_vertex'
+    echo
+    echo 'testgroup: textureoffset_sampler2darrayshadow_fragment'
+    echo 'openglvariant: GLES3.2'
+    echo 'testfilter: KHR-GLES32.core.ext_texture_shadow_lod.textureoffset.sampler2darrayshadow_fragment'
+    echo
+    echo 'testgroup: textureoffset_sampler2darrayshadow_bias_fragment'
+    echo 'openglvariant: GLES3.2'
+    echo 'testfilter: KHR-GLES32.core.ext_texture_shadow_lod.textureoffset.sampler2darrayshadow_bias_fragment'
+    echo
+    echo 'testgroup: texturelod_sampler2darrayshadow_vertex'
+    echo 'openglvariant: GLES3.2'
+    echo 'testfilter: KHR-GLES32.core.ext_texture_shadow_lod.texturelod.sampler2darrayshadow_vertex'
+    echo
+    echo 'testgroup: texturelod_sampler2darrayshadow_fragment'
+    echo 'openglvariant: GLES3.2'
+    echo 'testfilter: KHR-GLES32.core.ext_texture_shadow_lod.texturelod.sampler2darrayshadow_fragment'
+    echo 
+    echo 'testgroup: texturelod_samplercubeshadow_vertex'
+    echo 'openglvariant: GLES3.2'
+    echo 'testfilter: KHR-GLES32.core.ext_texture_shadow_lod.texturelod.samplercubeshadow_vertex'
+    echo
+    echo 'testgroup: texturelod_samplercubeshadow_fragment'
+    echo 'openglvariant: GLES3.2'
+    echo 'testfilter: KHR-GLES32.core.ext_texture_shadow_lod.texturelod.samplercubeshadow_fragment'
+    echo
+    echo 'testgroup: texturelod_samplercubearrayshadow_fragment'
+    echo 'openglvariant: GLES3.2'
+    echo 'testfilter: KHR-GLES32.core.ext_texture_shadow_lod.texturelod.samplercubearrayshadow_fragment'
+    echo
+    echo 'testgroup: texturelodoffset_sampler2darrayshadow_vertex'
+    echo 'openglvariant: GLES3.2'
+    echo 'testfilter: KHR-GLES32.core.ext_texture_shadow_lod.texturelodoffset.sampler2darrayshadow_vertex'
+    echo
+    echo 'testgroup: texturelodoffset_sampler2darrayshadow_fragment'
+    echo 'openglvariant: GLES3.2'
+    echo 'testfilter: KHR-GLES32.core.ext_texture_shadow_lod.texturelodoffset.sampler2darrayshadow_fragment'
+    echo 'testgroup: nearest_edge'
+    echo 'openglvariant: GLES3.2'
+    echo 'testfilter: KHR-GLES32.core.nearest_edge.*'
+    echo
+    echo 'testgroup: framebuffer_completeness'
+    echo 'openglvariant: GLES3.2'
+    echo 'testfilter: KHR-GLES32.core.framebuffer_completeness.*'
+    echo
+    echo 'testgroup: texture_compatibility'
+    echo 'openglvariant: GLES3.2'
+    echo 'testfilter: KHR-GLES32.core.texture_compatibility.*'
+    echo
+    echo 'testgroup: compressed_format'
+    echo 'openglvariant: GLES3.2'
+    echo 'testfilter: KHR-GLES32.core.compressed_format.*'
+
+
+unit: template
+template-resource: glconformancetestssru
+template-filter: glconformancetestssru.testgroup != ''
+template-engine: jinja2
+template-unit: job 
+id: gfx_mesa_gl_sru_{{ openglvariant }}_{{ testgroup }}
+category_id: mesa
+depends: gfx_mesa_gl_hw_render
+flags: simple
+user: root
+_summary: Run the {{ testgroup }} {{ openglvariant }} tests from VK-GL-CTS
+environ: 
+  # necessary for local mode
+  XDG_SESSION_TYPE
+  XDG_RUNTIME_DIR
+estimated_duration: 1m
+command:
+  cd /usr/local/checkbox-gfx/GL-CTS/build/external/openglcts/modules; ./glcts --deqp-surface-type=fbo --deqp-case={{ testfilter }}
+

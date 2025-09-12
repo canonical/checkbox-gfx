@@ -42,6 +42,17 @@ bootstrap_include:
     graphics_card
     glconformancetests
 
+id: opengl-test-plan-sru
+unit: test plan
+_name: GFX shorter test plan for verifying OpenGL
+include:
+  gfx_mesa_gl_sru_.*
+bootstrap_include:
+    com.canonical.certification::executable
+    com.canonical.certification::snap
+    graphics_card
+    glconformancetestssru
+
 id: crucible-test-plan
 unit: test plan
 _name: GFX test plan for verifying Mesa

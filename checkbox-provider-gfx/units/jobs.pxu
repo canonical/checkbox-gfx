@@ -811,75 +811,12 @@ command:
     echo
     echo 'testgroup: renderbuffer'
     echo 'openglvariant: GLES3.2'
-    echo 'testfilter: KHR-GLES32.core.internalformat.renderbuffer.rgb5_a1'
+    echo 'testfilter: KHR-GLES32.core.internalformat.renderbuffer.*'
     echo
-    echo 'testgroup: renderbuffer_depth_component32f'
+    echo 'testgroup: ext_texture_shadow_lod'
     echo 'openglvariant: GLES3.2'
-    echo 'testfilter: KHR-GLES32.core.internalformat.renderbuffer.depth_component32f'
+    echo 'testfilter: KHR-GLES32.core.ext_texture_shadow_lod.*'
     echo
-    echo 'testgroup: renderbuffer_depth32f_stencil8'
-    echo 'openglvariant: GLES3.2'
-    echo 'testfilter: KHR-GLES32.core.internalformat.renderbuffer.depth32f_stencil8'
-    echo
-    echo 'testgroup: sampler2darrayshadow_fragment'
-    echo 'openglvariant: GLES3.2'
-    echo 'testfilter: KHR-GLES32.core.ext_texture_shadow_lod.texture.sampler2darrayshadow_fragment'
-    echo
-    echo 'testgroup: sampler2darrayshadow_bias_fragment'
-    echo 'openglvariant: GLES3.2'
-    echo 'testfilter: KHR-GLES32.core.ext_texture_shadow_lod.texture.sampler2darrayshadow_bias_fragment'
-    echo
-    echo 'testgroup: samplercubearrayshadow_vertex'
-    echo 'openglvariant: GLES3.2'
-    echo 'testfilter: KHR-GLES32.core.ext_texture_shadow_lod.texture.samplercubearrayshadow_vertex'
-    echo
-    echo 'testgroup: samplercubearrayshadow_fragment'
-    echo 'openglvariant: GLES3.2'
-    echo 'testfilter: KHR-GLES32.core.ext_texture_shadow_lod.texture.samplercubearrayshadow_fragment'
-    echo
-    echo 'testgroup: samplercubearrayshadow_bias_fragment'
-    echo 'openglvariant: GLES3.2'
-    echo 'testfilter: KHR-GLES32.core.ext_texture_shadow_lod.texture.samplercubearrayshadow_bias_fragment'
-    echo
-    echo 'testgroup: textureoffset_sampler2darrayshadow_vertex'
-    echo 'openglvariant: GLES3.2'
-    echo 'testfilter: KHR-GLES32.core.ext_texture_shadow_lod.textureoffset.sampler2darrayshadow_vertex'
-    echo
-    echo 'testgroup: textureoffset_sampler2darrayshadow_fragment'
-    echo 'openglvariant: GLES3.2'
-    echo 'testfilter: KHR-GLES32.core.ext_texture_shadow_lod.textureoffset.sampler2darrayshadow_fragment'
-    echo
-    echo 'testgroup: textureoffset_sampler2darrayshadow_bias_fragment'
-    echo 'openglvariant: GLES3.2'
-    echo 'testfilter: KHR-GLES32.core.ext_texture_shadow_lod.textureoffset.sampler2darrayshadow_bias_fragment'
-    echo
-    echo 'testgroup: texturelod_sampler2darrayshadow_vertex'
-    echo 'openglvariant: GLES3.2'
-    echo 'testfilter: KHR-GLES32.core.ext_texture_shadow_lod.texturelod.sampler2darrayshadow_vertex'
-    echo
-    echo 'testgroup: texturelod_sampler2darrayshadow_fragment'
-    echo 'openglvariant: GLES3.2'
-    echo 'testfilter: KHR-GLES32.core.ext_texture_shadow_lod.texturelod.sampler2darrayshadow_fragment'
-    echo 
-    echo 'testgroup: texturelod_samplercubeshadow_vertex'
-    echo 'openglvariant: GLES3.2'
-    echo 'testfilter: KHR-GLES32.core.ext_texture_shadow_lod.texturelod.samplercubeshadow_vertex'
-    echo
-    echo 'testgroup: texturelod_samplercubeshadow_fragment'
-    echo 'openglvariant: GLES3.2'
-    echo 'testfilter: KHR-GLES32.core.ext_texture_shadow_lod.texturelod.samplercubeshadow_fragment'
-    echo
-    echo 'testgroup: texturelod_samplercubearrayshadow_fragment'
-    echo 'openglvariant: GLES3.2'
-    echo 'testfilter: KHR-GLES32.core.ext_texture_shadow_lod.texturelod.samplercubearrayshadow_fragment'
-    echo
-    echo 'testgroup: texturelodoffset_sampler2darrayshadow_vertex'
-    echo 'openglvariant: GLES3.2'
-    echo 'testfilter: KHR-GLES32.core.ext_texture_shadow_lod.texturelodoffset.sampler2darrayshadow_vertex'
-    echo
-    echo 'testgroup: texturelodoffset_sampler2darrayshadow_fragment'
-    echo 'openglvariant: GLES3.2'
-    echo 'testfilter: KHR-GLES32.core.ext_texture_shadow_lod.texturelodoffset.sampler2darrayshadow_fragment'
     echo 'testgroup: nearest_edge'
     echo 'openglvariant: GLES3.2'
     echo 'testfilter: KHR-GLES32.core.nearest_edge.*'
