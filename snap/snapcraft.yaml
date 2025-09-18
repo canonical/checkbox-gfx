@@ -41,6 +41,9 @@ apps:
   test-opengl:
     command-chain: [bin/wrapper_local]
     command: bin/test-opengl
+  test-opengl-short:
+    command-chain: [bin/wrapper_local]
+    command: bin/test-opengl-short
   test-opencl:
     command-chain: [bin/wrapper_local]
     command: bin/test-opencl

@@ -59,7 +59,22 @@ checkbox-gfx.test-opencl
 checkbox-gfx.test-opengl
 checkbox-gfx.test-vulkan
 ```
+Some of the tests in this project can take a long time to complete. To make development and validation easier, smaller test suites have been created that finish in under 30 minutes.
+Note: Crucible, Level-Zero, and Level-Zero Raytracing tests are already fast, so no reduced test suites were created for them.
 
+The following quick test suites are available:
+```shell
+checkbox-gfx.test-opencl-short
+checkbox-gfx.test-opengl-short
+```
+Clearing Interrupted Sessions
+
+If a test run is interrupted or stopped, stale session files may remain in /var/tmp/checkbox-ng/sessions/.
+To clear them before starting a new test run, use:
+
+```shell
+sudo rm -rf /var/tmp/checkbox-ng/sessions/*
+```
 Due to some tests causing dropped SSH connections, running the tests remotely should be done like this:
 
 1. Install checkbox-gfx on both the remote machine and the local machine
