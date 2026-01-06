@@ -3,6 +3,7 @@
 export ARCH=$(uname -p)
 export INSTALL_DIR=/usr/local/checkbox-gfx
 export WORKING_DIR=$HOME/.checkbox-gfx-working-dir
+export UBUNTU_CODENAME=$(lsb_release -sc | tail -1)
 
 sudo mkdir -p $INSTALL_DIR
 sudo mkdir -p $WORKING_DIR
