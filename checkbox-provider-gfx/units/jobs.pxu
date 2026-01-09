@@ -1115,6 +1115,24 @@ estimated_duration: 1m
 command:
   cd /usr/local/checkbox-gfx/VK-GL-CTS/build; ./external/vulkancts/modules/vulkan/deqp-vk --deqp-caselist-file={{ testfile }}
 
+id: gfx_mesa_vk_sru_api
+category_id: mesa
+flags: simple
+user: root
+_summary: Run the Vulkan CTS API mustpass suite
+environ:
+  # necessary for local mode
+  XDG_SESSION_TYPE
+  XDG_RUNTIME_DIR
+estimated_duration: 1m
+command:
+  vulkan-cts.test dEQP-VK.api.smoke.* 
+  vulkan-cts.test dEQP-VK.dgc.ext.compute.smoke.*
+  vulkan-cts.test dEQP-VK.mesh_shader.ext.smoke.*
+  vulkan-cts.test dEQP-VK.mesh_shader.nv.smoke.*
+  vulkan-cts.test dEQP-VK.synchronization2.smoke.*
+  vulkan-cts.dEQP-VK.synchronization.smoke.*
+
 plugin: resource
 id: gfx_mesa_gl_hw_render
 category_id: mesa

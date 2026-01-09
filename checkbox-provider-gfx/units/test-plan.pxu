@@ -31,6 +31,16 @@ bootstrap_include:
     graphics_card
     vkconformancetests
 
+id: vulkan-sru-test-plan
+unit: test plan
+_name: GFX shorter test plan for verifying Vulkan
+include:
+  gfx_mesa_vk_sru_api
+bootstrap_include:
+    com.canonical.certification::executable
+    com.canonical.certification::snap
+    graphics_card
+
 id: opengl-test-plan
 unit: test plan
 _name: GFX test plan for verifying OpenGL
