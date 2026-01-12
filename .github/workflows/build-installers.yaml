@@ -1,0 +1,241 @@
+name: "Build Installers"
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Ubuntu version of the runner'
+        required: true
+        default: 'noble'
+        type: choice
+        options:
+          - jammy
+          - noble
+
+      arch:
+        description: 'Architecture of the runner'
+        required: true
+        default: 'amd64'
+        type: choice
+        options:
+          - amd64
+          - arm64
+
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches:
+      - main
+
+jobs:
+  # Job to detect which files have changed
+  changes:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    outputs:
+      vulkan: ${{ steps.changes.outputs.vulkan }}
+      opencl: ${{ steps.changes.outputs.opencl }}
+      crucible: ${{ steps.changes.outputs.crucible }}
+      opengl: ${{ steps.changes.outputs.opengl }}
+      lvl-zero: ${{ steps.changes.outputs.lvl-zero }}
+      lvl-zero-rt: ${{ steps.changes.outputs.lvl-zero-rt }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dorny/paths-filter@v3
+        id: changes
+        with:
+          filters: |
+            vulkan:
+              - 'bin/install-vulkan'
+            opencl:
+              - 'bin/install-opencl'
+            crucible:
+              - 'bin/install-crucible'
+            opengl:
+              - 'bin/install-opengl'
+            lvl-zero:
+              - 'bin/install-lvl-zero'
+            lvl-zero-rt:
+              - 'bin/install-lvl-zero-rt'
+
+  manual-build:
+    if: github.event_name == 'workflow_dispatch'
+    strategy:
+      matrix:
+        test_name: [vulkan, opencl, crucible, opengl, lvl-zero, lvl-zero-rt]
+    name: "Manual Build - ${{ matrix.test_name }}"
+    runs-on: [self-hosted, linux, "${{ inputs.arch }}", "${{ inputs.version }}"]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run install-${{ matrix.test_name }}
+        shell: bash
+        run: bin/install-${{ matrix.test_name }}
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: "output-${{ matrix.test_name }}-\
+          ${{ inputs.arch }}-${{ inputs.version }}"
+          path: /usr/local/checkbox-gfx/*
+
+  pr-build-vulkan:
+    needs: changes
+    # needs.changes only runs if the event is a PR
+    if: needs.changes.outputs.vulkan == 'true'
+    strategy:
+      matrix:
+        arch: [amd64, arm64]
+        test_name: [vulkan]
+    name: "Installer testing - Vulkan CTS"
+    runs-on: [self-hosted, linux, "${{ matrix.arch }}", noble]
+
+    steps:
+      - name: "Installers - ${{ matrix.test_name }} - ${{ matrix.arch }}"
+        run: echo "Running ${{ matrix.test_name }} ${{ matrix.arch }} install"
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run install-${{ matrix.test_name }}
+        shell: bash
+        run: bin/install-${{ matrix.test_name }}
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: output-${{ matrix.test_name }}-${{ matrix.arch }}
+          path: /usr/local/checkbox-gfx/*
+
+  pr-build-opencl:
+    needs: changes
+    # needs.changes only runs if the event is a PR
+    if: needs.changes.outputs.opencl == 'true'
+    strategy:
+      matrix:
+        arch: [amd64, arm64]
+        test_name: [opencl]
+    name: "Installer testing - OpenCL CTS"
+    runs-on: [self-hosted, linux, "${{ matrix.arch }}", noble]
+
+    steps:
+      - name: "Installers - ${{ matrix.test_name }} - ${{ matrix.arch }}"
+        run: echo "Running ${{ matrix.test_name }} ${{ matrix.arch }} install"
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run install-${{ matrix.test_name }}
+        shell: bash
+        run: bin/install-${{ matrix.test_name }}
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: output-${{ matrix.test_name }}-${{ matrix.arch }}
+          path: /usr/local/checkbox-gfx/*
+  
+  pr-build-crucible:
+    needs: changes
+    # needs.changes only runs if the event is a PR
+    if: needs.changes.outputs.crucible == 'true'
+    strategy:
+      matrix:
+        arch: [amd64, arm64]
+        test_name: [crucible]
+    name: "Installer testing - Crucible"
+    runs-on: [self-hosted, linux, "${{ matrix.arch }}", noble]
+
+    steps:
+      - name: "Installers - ${{ matrix.test_name }} - ${{ matrix.arch }}"
+        run: echo "Running ${{ matrix.test_name }} ${{ matrix.arch }} install"
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run install-${{ matrix.test_name }}
+        shell: bash
+        run: bin/install-${{ matrix.test_name }}
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: output-${{ matrix.test_name }}-${{ matrix.arch }}
+          path: /usr/local/checkbox-gfx/*
+
+  pr-build-opengl:
+    needs: changes
+    # needs.changes only runs if the event is a PR
+    if: needs.changes.outputs.opengl == 'true'
+    strategy:
+      matrix:
+        arch: [amd64, arm64]
+        test_name: [opengl]
+    name: "Installer testing - OpenGL"
+    runs-on: [self-hosted, linux, "${{ matrix.arch }}", noble]
+
+    steps:
+      - name: "Installers - ${{ matrix.test_name }} - ${{ matrix.arch }}"
+        run: echo "Running ${{ matrix.test_name }} ${{ matrix.arch }} install"
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run install-${{ matrix.test_name }}
+        shell: bash
+        run: bin/install-${{ matrix.test_name }}
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: output-${{ matrix.test_name }}-${{ matrix.arch }}
+          path: /usr/local/checkbox-gfx/*
+
+  pr-build-lvl-zero:
+    needs: changes
+    # needs.changes only runs if the event is a PR
+    if: needs.changes.outputs.lvl-zero == 'true'
+    name: "Installer testing - Level Zero"
+    runs-on: [self-hosted, linux, amd64, noble]
+
+    steps:
+      - name: "Installers - lvl-zero - amd64"
+        run: echo "Running lvl-zero amd64 install"
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run install-lvl-zero
+        shell: bash
+        run: bin/install-lvl-zero
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: output-lvl-zero-amd64
+          path: /usr/local/checkbox-gfx/*
+
+  pr-build-lvl-zero-rt:
+    needs: changes
+    # needs.changes only runs if the event is a PR
+    if: needs.changes.outputs.lvl-zero-rt == 'true'
+    name: "Installer testing - Level Zero Raytracing"
+    runs-on: [self-hosted, linux, amd64, noble]
+
+    steps:
+      - name: "Installers - lvl-zero-rt - amd64"
+        run: echo "Running lvl-zero-rt amd64 install"
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run install-lvl-zero-rt
+        shell: bash
+        run: bin/install-lvl-zero-rt
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: output-lvl-zero-rt-amd64
+          path: /usr/local/checkbox-gfx/*
