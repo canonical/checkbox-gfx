@@ -35,7 +35,7 @@ id: vulkan-sru-test-plan
 unit: test plan
 _name: GFX shorter test plan for verifying Vulkan
 include:
-  gfx_mesa_vk_sru_api
+  gfx_mesa_vk_sru_.*
 bootstrap_include:
     com.canonical.certification::executable
     com.canonical.certification::snap
