@@ -1115,11 +1115,11 @@ estimated_duration: 1m
 command:
   cd /usr/local/checkbox-gfx/VK-GL-CTS/build; ./external/vulkancts/modules/vulkan/deqp-vk --deqp-caselist-file={{ testfile }}
 
-id: gfx_mesa_vk_sru_api
+id: gfx_mesa_vk_sru_api_smoke
 category_id: mesa
 flags: simple
 user: root
-_summary: Run the Vulkan CTS API mustpass suite
+_summary: Run the Vulkan CTS API smoke tests
 environ:
   # necessary for local mode
   XDG_SESSION_TYPE
@@ -1127,11 +1127,18 @@ environ:
 estimated_duration: 1m
 command:
   vulkan-cts.test dEQP-VK.api.smoke.* 
-  vulkan-cts.test dEQP-VK.dgc.ext.compute.smoke.*
-  vulkan-cts.test dEQP-VK.mesh_shader.ext.smoke.*
-  vulkan-cts.test dEQP-VK.mesh_shader.nv.smoke.*
-  vulkan-cts.test dEQP-VK.synchronization2.smoke.*
-  vulkan-cts.dEQP-VK.synchronization.smoke.*
+_siblings: [
+  { "id": "gfx_mesa_vk_sru_compute_smoke",
+    "command": "vulkan-cts.test dEQP-VK.dgc.ext.compute.smoke.*" },
+  { "id": "gfx_mesa_vk_sru_mesh_shader_ext_smoke",
+    "command": "vulkan-cts.test dEQP-VK.mesh_shader.ext.smoke.*" },
+  { "id": "gfx_mesa_vk_sru_mesh_shader_nv_smoke",
+    "command": "vulkan-cts.test dEQP-VK.mesh_shader.nv.smoke.*" },
+  { "id": "gfx_mesa_vk_sru_sync2_smoke",
+    "command": "vulkan-cts.test dEQP-VK.synchronization2.smoke.*" },
+  { "id": "gfx_mesa_vk_sru_sync_smoke",
+    "command": "vulkan-cts.test dEQP-VK.synchronization.smoke.*" }
+  ]
 
 plugin: resource
 id: gfx_mesa_gl_hw_render
