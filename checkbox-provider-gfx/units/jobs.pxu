@@ -1129,14 +1129,19 @@ command:
   vulkan-cts.test dEQP-VK.api.smoke.* 
 _siblings: [
   { "id": "gfx_mesa_vk_sru_compute_smoke",
+    "_summary": "Run the Vulkan CTS compute smoke tests",
     "command": "vulkan-cts.test dEQP-VK.dgc.ext.compute.smoke.*" },
   { "id": "gfx_mesa_vk_sru_mesh_shader_ext_smoke",
+    "_summary": "Run the Vulkan CTS Shader Ext smoke tests",
     "command": "vulkan-cts.test dEQP-VK.mesh_shader.ext.smoke.*" },
   { "id": "gfx_mesa_vk_sru_mesh_shader_nv_smoke",
+    "_summary": "Run the Vulkan CTS Shader NV smoke tests",
     "command": "vulkan-cts.test dEQP-VK.mesh_shader.nv.smoke.*" },
   { "id": "gfx_mesa_vk_sru_sync2_smoke",
+    "_summary": "Run the Vulkan CTS Sync2 smoke tests",
     "command": "vulkan-cts.test dEQP-VK.synchronization2.smoke.*" },
   { "id": "gfx_mesa_vk_sru_sync_smoke",
+    "_summary": "Run the Vulkan CTS Sync smoke tests",
     "command": "vulkan-cts.test dEQP-VK.synchronization.smoke.*" }
   ]
 
