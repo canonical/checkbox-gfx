@@ -35,6 +35,9 @@ apps:
   test-vulkan:
     command-chain: [bin/wrapper_local]
     command: bin/test-vulkan
+  test-vulkan-short:
+    command-chain: [bin/wrapper_local]
+    command: bin/test-vulkan-short
   test-crucible:
     command-chain: [bin/wrapper_local]
     command: bin/test-crucible
@@ -105,4 +108,3 @@ parts:
   config-variables:
     plugin: dump
     source: config/
-

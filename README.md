@@ -66,6 +66,7 @@ The following quick test suites are available:
 ```shell
 checkbox-gfx.test-opencl-short
 checkbox-gfx.test-opengl-short
+checkbox-gfx.test-vulkan-short
 ```
 Clearing Interrupted Sessions
 
